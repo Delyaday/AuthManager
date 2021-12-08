@@ -39,12 +39,10 @@ namespace AuthManager
             this.email = email;
         }
 
-        /*public override string ToString()
+        public override string ToString()
         {
             return "Пользователь: " + Login + " Email: " + Email;
         }
-        */
-
         
     }
 }

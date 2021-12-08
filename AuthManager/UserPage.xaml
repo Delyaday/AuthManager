@@ -6,20 +6,57 @@
         xmlns:local="clr-namespace:AuthManager"
                 mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModel="clr-namespace:AuthManager.MVVM.ViewModel"
         WindowStartupLocation="CenterScreen"
-        Title="HotelManager" Height="600" Width="700">
+        Title="HotelManager" Height="600" Width="900">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/TextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Grid Background="#320B35">
-        <Border MinWidth="400" MaxWidth="550" Margin="15 15 15 15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+        <Border MinWidth="400" MaxWidth="650" MaxHeight="700" Margin="15 15 15 15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="25" Color="LightGray" ShadowDepth="0"/>
             </Border.Effect>
-            <StackPanel>
-                <TextBlock Text="Welcome to Hotel Manager!" FontSize="30" FontWeight="Bold" Margin="0 0 0 10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                     
-             
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            </StackPanel>
+                <TextBlock Text="Hotel manager" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0" FontSize="22" Foreground="Black"/>
+
+                <StackPanel Grid.Row="1">
+                    <RadioButton Style="{StaticResource MenuButtonTheme}" Content="Rooms" IsChecked="True" Command="{Binding HomeViewCommand}" Height="50" Foreground="Black" FontSize="14"/>
+                    <RadioButton Style="{StaticResource MenuButtonTheme}" Content="Booking" Height="50" Command="{Binding DiscoveryViewCommand}" Foreground="Black" FontSize="14"/>
+                    <RadioButton Style="{StaticResource MenuButtonTheme}" Content="List of Residents" Command="{Binding ResidentsViewCommand}" Height="50" Foreground="Black" FontSize="14"/>
+                </StackPanel>
+
+                <TextBox Width="250"
+                         Height="40"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Left"
+                         Margin="5"
+                         Grid.Column="1"
+                         Style="{StaticResource ModernTextBox}"/>
+
+                <ContentControl Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="10"
+                                Content="{Binding CurrentView}"/>
+
+            </Grid>
         </Border>
     </Grid>
 </Window>
